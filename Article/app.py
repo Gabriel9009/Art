@@ -16,7 +16,7 @@ if st.button("Recommend"):
             recs = recommend_articles(article_title)
         st.success("Here are some recommendations:")
         for i, rec in enumerate(recs):
-            tag = " 🌟 *Sponsored*" if rec["sponsored"] else ""
+            tag = " 🌟 *Sponsored*" if rec["Sponsored"] else ""
             st.markdown(f"**{i+1}.** {rec['Title']}{tag}")
 
     else:
