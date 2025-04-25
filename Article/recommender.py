@@ -31,19 +31,19 @@ except Exception as e:
     st.stop()
 
 def recommend_articles(title, top_n=5):
-    if title not in df['title'].values:
+    if title not in df['Title'].values:
         return []
     
-    idx = df[df['title'] == title].index[0]
+    idx = df[df['Title'] == title].index[0]
     sim_scores = list(enumerate(cosine_sim[idx]))
     sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
     sim_scores = sim_scores[1:top_n+1]
 
-    return [df.iloc[i[0]]['title'] for i in sim_scores]
+    return [df.iloc[i[0]]['Title'] for i in sim_scores]
 
 # Simple UI
 st.title("Article Recommender")
-selected = st.selectbox("Choose an article:", df['title'].unique())
+selected = st.selectbox("Choose an article:", df['Title'].unique())
 recommendations = recommend_articles(selected)
 
 if recommendations:
